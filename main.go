@@ -14,6 +14,14 @@ import (
 	// "github.com/go-kit/kit/endpoint"
 	// httptransport "github.com/go-kit/kit/transport/http"
 )
+
+// For onion
+import (
+    "fmt"
+    api "ldap/presentation"
+    infra "ldap/infrastructure"
+    model "ldap/domain/model"
+)
  
 type Ldap struct {
     Host            string
@@ -100,4 +108,15 @@ func (ldap *Ldap) Login(username string, password string) (*LdapResult, error) {
         Name: entity.GetAttributeValue("displayName"),
         DN: entity.GetAttributeValue("dn"),
     }, nil
+}
+
+// For onion
+func main() {
+    fmt.Println("#main: Created end points.")
+    fmt.Println(api.Get())
+
+    // 以下の流れはapplication でやるべきか？
+    sppmaster := infra.NewSppMaster()
+    ldapServer := model.Ldap{Server: sppmaster} // DI
+    fmt.Println(ldapServer.Search())
 }
