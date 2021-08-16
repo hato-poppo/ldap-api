@@ -115,8 +115,9 @@ func main() {
     fmt.Println("#main: Created end points.")
     fmt.Println(api.Get())
 
-    // 以下の流れはapplication でやるべきか？
     sppmaster := infra.NewSppMaster()
-    ldapServer := model.Ldap{Server: sppmaster} // DI
-    fmt.Println(ldapServer.Search())
+    fmt.Println(application.Controller(sppmaster))
+    // 以下の流れはapplication でやるべきか？
+    // ldapServer := model.Ldap{Server: sppmaster} // DI
+    // fmt.Println(ldapServer.Search())
 }
