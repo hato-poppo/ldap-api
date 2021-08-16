@@ -12,9 +12,3 @@ func Controller(server repository.LdapRepository) model.LdapResult {
     ldapServer := model.Ldap{Server: server}
     return ldapServer.Search()
 }
-
-func Exchange() string {
-    fmt.Println("#application service: Called by presentation.")
-    fmt.Println("#application service: Call the domain model.")
-    return model.Message()
-}
