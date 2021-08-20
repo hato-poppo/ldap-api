@@ -116,8 +116,6 @@ func main() {
     fmt.Println(api.Get())
 
     sppmaster := infra.NewSppMaster()
-    fmt.Println(application.Controller(sppmaster))
-    // 以下の流れはapplication でやるべきか？
-    // ldapServer := model.Ldap{Server: sppmaster} // DI
-    // fmt.Println(ldapServer.Search())
+    service := application.LdapUseCase(sppmaster)
+    fmt.Println(service)
 }
