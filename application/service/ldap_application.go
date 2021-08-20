@@ -6,8 +6,14 @@ import (
     model "ldap/domain/model"
 )
 
+type LdapService struct {
+    Repository repository.LdapRepository
+}
+
 // ここでコントローラー的な役割を担う
-func LdapUseCase(server repository.LdapRepository) model.LdapResult {
-    ldapServer := model.Ldap{Server: server}
+func (l LdapService) SearchUser(uid string, password string) model.LdapResult {
+    fmt.Println(uid)
+    fmt.Println(password)
+    ldapServer := model.Ldap{Server: l.Repository}
     return ldapServer.Search()
 }

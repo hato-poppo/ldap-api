@@ -113,9 +113,9 @@ func (ldap *Ldap) Login(username string, password string) (*LdapResult, error) {
 // For onion
 func main() {
     fmt.Println("#main: Created end points.")
-    fmt.Println(api.Get())
 
     sppmaster := infra.NewSppMaster()
-    service := application.LdapUseCase(sppmaster)
-    fmt.Println(service)
+    service := application.LdapService{Repository: sppmaster}
+    ep := api.JsonEndPoint(service)
+    fmt.Println(ep)
 }
