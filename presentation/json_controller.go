@@ -13,7 +13,8 @@ type ldapRequest struct {
     Password string  `json:"password"`
 }
 
-// ここで戻り値をちゃんと定義しておいた方が良い気がする
+// ここで戻り値をちゃんと定義しておいた方が良いと思う
+// 現状ではレスポンスの中身がここで分からなくて読み手が困る
 //type ldapResponse struct {}
 
 func JsonEndPoint(svc app.LdapService) endpoint.Endpoint {
