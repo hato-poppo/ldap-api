@@ -6,9 +6,10 @@ import (
 )
 
 type SppMaster struct {
-    Host string
-    User string
-    Pass string
+    Host            string
+    BindDN          string
+    BindUser        string
+    BindPassword    string
 }
 
 type LdapRepository interface {
@@ -19,9 +20,10 @@ type LdapRepository interface {
 // 呼び出しの際はこのメソッドをコールすること
 func NewSppMaster() *SppMaster {
     return &SppMaster{
-        Host: "SppMasterServer",
-        User: "LdapUser",
-        Pass: "LdapPassword",
+        Host: "LDAP SERVER HOST",
+        BindDN: "BIND DN",
+        BindUser: "BIND USER",
+        BindPassword: "BIND USER PASSWORD",
     }
 }
 
