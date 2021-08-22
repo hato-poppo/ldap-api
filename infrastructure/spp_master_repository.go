@@ -5,7 +5,7 @@ import (
     repository "ldap/domain/service"
 )
 
-type SppMaster struct {
+type sppMaster struct {
     Host            string
     BindDN          string
     BindUser        string
@@ -18,8 +18,8 @@ type LdapRepository interface {
 
 // コンストラクタ
 // 呼び出しの際はこのメソッドをコールすること
-func NewSppMaster() *SppMaster {
-    return &SppMaster{
+func NewSppMaster() *sppMaster {
+    return &sppMaster{
         Host: "LDAP SERVER HOST",
         BindDN: "BIND DN",
         BindUser: "BIND USER",
@@ -28,12 +28,12 @@ func NewSppMaster() *SppMaster {
 }
 
 
-func (s SppMaster) Connect() bool {
+func (s sppMaster) Connect() bool {
     fmt.Println("#infrastructure: LDAP server connected.")
     return true
 }
 
-func (s SppMaster) Search() (string, string, string) {
+func (s sppMaster) Search() (string, string, string) {
     fmt.Println("#infrastructure: LDAP server searched.")
     return "UserId", "UserName", "Email"
 }
