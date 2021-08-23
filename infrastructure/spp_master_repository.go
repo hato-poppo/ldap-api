@@ -7,6 +7,7 @@ import (
 
 type sppMaster struct {
     Host            string
+    Port            string
     BindDN          string
     BindUser        string
     BindPassword    string
@@ -21,6 +22,7 @@ type LdapRepository interface {
 func NewSppMaster() *sppMaster {
     return &sppMaster{
         Host: "LDAP SERVER HOST",
+        Port: "LDAP SERVER  PORT",
         BindDN: "BIND DN",
         BindUser: "BIND USER",
         BindPassword: "BIND USER PASSWORD",
