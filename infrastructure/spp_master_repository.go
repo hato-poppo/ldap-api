@@ -3,6 +3,7 @@ package infrastructure
 import (
     "fmt"
     repository "ldap/domain/service"
+    ldapConnect "gopkg.in/ldap.v2"
 )
 
 type sppMaster struct {
@@ -31,8 +32,20 @@ func NewSppMaster() *sppMaster {
 
 
 func (s sppMaster) Connect() bool {
-    // ここで接続情報を参照する
-    fmt.Println("#infrastructure: LDAP server connected.")
+    l, err := ldapConnect.Dial("tcp", fmt.Sprintf("%s:%d", s.Host, s.Port))
+    if err != nil {
+        fmt.Printf("Cannot connect server.\n%s", err.Error())
+        return false
+    }
+    defer l.Close()
+
+    
+    err = l.Bind(ldap.BindUser, ldap.BindPassword)
+    if err != nil {
+        log.Printf("Cannot connect with bind user\n%s", err.Error())
+        return false
+    }
+
     return true
 }
 
