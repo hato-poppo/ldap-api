@@ -1,11 +1,9 @@
 package presentation
 
 import (
-    app "ldap/application/service"
     "context"
-    // "encoding/json"
-    // "net/http"
     "github.com/go-kit/kit/endpoint"
+    app "ldap/application/service"
 )
 
 type ldapRequest struct {
