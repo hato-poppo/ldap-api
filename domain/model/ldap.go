@@ -15,15 +15,19 @@ type LdapResult struct {
     Email string
 }
 
-func Message() string {
+func (l *Ldap) Search(uid string, password string) LdapResult {
     fmt.Println("#domain model: Start the LDAP authentication.")
-    return "Successed"
-}
+    isConnected := l.Server.Connect()
+    if !isConnected {
+        fmt.Println("接続失敗")
+        // 本来はここでエラーか何かを返す
+    }
 
-func (l *Ldap) Search() LdapResult {
-    fmt.Println("#domain model: Start the LDAP authentication.")
-    l.Server.Connect()
-    uid, name, email := l.Server.Search()
+    uid, name, email, err := l.Server.Search(uid, password)
+    if err != nil {
+        return LdapResult{}
+    }
+
     return LdapResult{
         Uid: uid,
         Name: name,
